@@ -18,16 +18,16 @@ abstract class Book {
   return title;
  }
 
- public void setTitle(int set_title) {
-  number = set_title;
+ public void setTitle(String set_title) {
+  title = set_title;
  }
 
  public String getName() {
   return name;
  }
 
- public void setName(int set_name) {
-  number = set_name;
+ public void setName(String set_name) {
+  name = set_name;
  }
 
  public abstract void book();
