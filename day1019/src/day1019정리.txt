@@ -1,0 +1,170 @@
+상속관계에 있는 부모의 참조변수가 자식클래스의 객체를 참조하고 있는 경우
+해당자식클래스 형으로 변환하여 자식클래스의 참조변수에 대입할 수 있다
+Movable m= new Car();
+Car c= (Car)m;
+
+상속관계에 있을 때에 부모의 참조변수가 자식클래스의 객체를 참조할 수 있다
+Movable m2=c;
+
+상속관계에 있을 때 자식클래스의 객체를 부모의 자료형으로 형변환할 수 있다
+Movable m3= (Movable)c;
+
+is a관계
+돼지는 동물이다 O
+동물은 돼지이다 X
+
+호빗은 게임캐릭터이다 O
+게임캐릭터는 호빗이다 X
+
+호빗 is a 게임캐릭터 O
+==> 그래서 상속관계에 있는 것을 is a 관계라고 말한다
+
+상속관계에 있을 때(is a관계에 있을 때에)
+부모클래스의 참조변수, 자식클래스의 객체를
+참조할 수 있다
+
+g1.getRing()==>오류
+부모의 참조변수가 자식클래스의 객체를 참조할 수 있지만
+자식클래스에 새롭게 추가한 메소드를 바로 호출할 수 없다
+이때 형변환을 해주어
+
+((Hobit)g1).getRing();
+is a관계에 있을 때에 부모의 참조변수가 자식클래스의 객체를 참조할 때에
+자식클래스에서 새롭게 추가한 메소드를 호출하려면 그 자식클래스로 형변환 후 호출할 수 있다
+
+has a, is a관계
+
+클래스 사이에는 has a 관계, is a관계가 있다
+
+클래스 A,B가 있을 때
+
+A has a B는
+A클래스의 맴버변수로 B클래스의 객체를 가진다는 의미이다
+class B{
+어쩌구저쩌구
+}
+
+class A{
+private B;
+}
+
+클래스 A,B가 있을 때
+A is a B는 상속관계를 말한다
+
+class B{
+     어쩌구저쩌구
+}
+
+class A extends B{
+
+}
+
+CUI: Character User Interface
+     컴퓨터하고 사람하고 글자로 소통
+ 
+GUI: Graphic User Interface
+     컴퓨터하고 사람하고 그래픽화면으로 의사소통
+     
+     자바가 GUI관련 클래스와 인터페이스를 모아놓은 패키지
+     -java.awt: 자바초기부터 있던 것, gui모양이 윈도우나 리눅스 맥이나 시스템마다 좀 다른모양
+     
+     -javax.swing: 나중에 만들어진 것, gui모양이 모든 플랫폼에서 동일,미려함.
+     
+
+자바가 제공하는 문자열 처리를 위한 클래스 3가지
+
+-String은 변하지 않는 문자열 처리에 적합하다
+String변수를 문자열을 만들고
+문자열의 내용을 변경시키면
+새로운 메모리로 이동하고 원래의 객체는 garbage가 된다
+
+==> 문자열 처리를 위한 여러가지 기능을 제공한다
+==> 엄밀히 말하면 참조자료형이다
+    그런데 String은 기본자료형처럼 사용할 수 있다
+    특정 Charset을 적용해서 decoding도 가능하다
+    
+ 네트워크 통신이나 파일로 자료를 저장할 때에 문자열데이터를 byte형으로 변환하여 전송한다
+ 이때 전송받은 byte형의 배열을 다시 String으로 만들기 위하여 byte배열을 매개변수로 갖는
+ String의 생성자를 이용한다
+ 또,String데이터를 byte으로 변환하기 위해 getBytes()메소드를 이용한다
+
+-StringBuffer
+-StringBuilder
+이 둘은 변하는 문자열 처리에 적합하다
+이 둘로 변수로 문자열을 만들고 문자열의 내용을 변경시키면
+객체 자신이 변경되고 새로운 메모리로 이동하지 않는다
+
+그렇기 때문에 변하는 문자열 처리에는 String이 적합하지 않다
+
+그런데 만약 StringBuffer를 매개변수로 전달하여 어떤 메소드로 사용할 때에는 다시 String으로
+변환해야 하는 경우가 많다
+문자열을 매개변수로 받아 처리하는 대부분의 메소드는 String으로 받도록 되어있는게 일반적이다
+
+pro(data);
+pro메소드는 String을 매개변수로 갖기 때문에 StringBuffer를 전달할 수 없다
+
+이와 같이 어떠한 메소드를 호출하기 위해
+StringBuffer를 String으로 바꿔야 하는 경우가 많다
+이를 위해 String생성자 중에 StringBuffer를 매개변수로 갖는 생성자를 이용한다
+pro(new String(data));
+String r= new String(data);
+pro(r);
+
+
+String 클래스의 주요 메소드
+
+charAt(int index)
+==> 문자열 데이터 중에 특정 인덱스에 위치한 하나의 문자를 반환하는 메소드
+
+concat(String str)
+==> 원래의 문자열 뒤에 매개변수로 전달받은 문자열을 연결한 새로운 문자열을 반환
+String의 특징은 불변(변하지 않는 문자열)이므로 원래의 문자열은 변동이 없다
+
+String data= new String("hello");가 있을 때에
+다음과 같은 명령을 수행하면
+
+String data2= data.concat("korea")라고 하면
+data2는 "hellokorea"이지만
+data는 여전히 hello이다
+
+만약 위의 문장을 다음과 같이 표현하면
+String data= new String("hello"); //A
+data= data.concat("korea");       //B
+
+data변수에 새로운 문자열을 연결하여 다시 data에 대입하면
+data를 출력하면 hellokorea가 나온다
+그러나 A에서 참조했던 메모리와 B에서 참조하는 메모리는 다르다
+
+equals(Object obj)
+==> 참조자료형에서 비교연산자 ==은 두개의 객체가 서로 동일한 메모리를 참조하고 있는지 판별한다
+    만약 참조자료형의 두개의 객체가 서로 동일한 값을 갖고 있는지 판별하기 위해서는 
+    equals메소드를 이용한다
+    String또한 참조자료형이니 서로 동일한 문자열인지 판별할 때 equals메소드를 이용한다
+    
+    String하고 상관없이도 마찬가지로 사용자가 만든 클래스에서도 두개의 객체의 값이 서로 동일한지
+    판별할 필요가 있으면 equals을 자신에게 맞도록 재정의한다
+    
+    equals는 대소문자를 구별합니다
+    하지만 equalsIgnoreCase는 대소문자를 구별하지 않는다
+    
+indexOf(String data)
+indexOf(char ch)
+문자열 안에서 특정문자열이나 문자가 위치한 인덱스를 반환하는 메소드이며
+만약 찾고자 하는 문자나 문자열이 없으면 -1을 반환한다
+
+lastIndexOf
+==> 문자열의 끝에서부터 찾고자하는 문자열을 찾아 인덱스를 반환하는 메소드
+찾기를 끝에서부터 하고 인덱스를 따지는 것은 왼쪽에서부터 따진다
+
+substring(beginIndex,endIndex)
+문자열데이터로부터 beginIndex부터 endIndex-1까지의 문자열을 반환하는 메소드
+
+substring(beginIndex)
+문자열데이터로부터 beginIndex부터 끝까지 문자열을 반환하는 메소드이다
+
+length
+
+length() ==> 메소드
+
+trim()
+공백을 제거해준다

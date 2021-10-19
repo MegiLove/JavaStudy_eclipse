@@ -5,6 +5,11 @@ public class Hobit extends GameCharacter {
 	 {
 	  System.out.println("호빗을 출력합니다.");
 	 }
+	 
+	 public void getRing()
+	 {
+		 System.out.println("호빗의 getRing()");
+	 }
 	}
 
 

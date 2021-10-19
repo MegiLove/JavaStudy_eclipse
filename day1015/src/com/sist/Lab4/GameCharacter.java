@@ -11,9 +11,9 @@ abstract class GameCharacter
  {
   System.out.println("GameCharacter()ÀÇ draw()");
  }
- public void getRing()
+ public void getLife()
  {
-  System.out.println("GameCharacter()ÀÇ getRing()");
+  System.out.println("GameCharacter()ÀÇ getLife()");
  }
 }
 
