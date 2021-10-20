@@ -1,0 +1,82 @@
+replace (a,b)
+==> String문자열 중에서 a를 찾아 b로 변환한 새로운 문자열을 반환하는 메소드이다
+
+String []split(String 정규표현식)
+==> 문자열데이터를 정규표현식에 따라 분리하여 분리된 문자열의 배열을 반환하는 메소드이다
+
+a.split("/")
+/를 기준으로 나눠달라는 뜻이다
+
+StringTokenizer클래스를 이용하여
+문자열을 분리할 수도 있다
+
+boolean을 반환하는 startsWith(String prefix)메소드
+==> 문자열데이터를 특정 문자열로 시작하는지 판별하여 true, false로 반환하는 메소드
+
+boolean endsWith(String suffix)
+==> 문자열데이터를 특정 문자열로 끝나는지 판별하여 true, false로 반환하는 메소드
+
+String toLowerCase()
+==> 문자열데이터를 모두 소문자로 변환한 새로운 문자열을 반환하는 메소드이다
+
+String toUpperCase()
+==> 문자열데이터를 모두 대문자로 변환한 새로운 문자열을 반환하는 메소드이다
+
+static String을 반환하는 valueOf(기본자료형 변수)
+==> 기본자료형의 값(변수의 값)을 String으로 만들어 반환하는 메소드이다
+
+int data= 2021;
+
+정수형 데이터를 문자열로 만들어야 하는 상황이라면
+String result=String.valueOf(data);
+valueOf 메소드를 이용하는 대신에 다음과 같이 표현할 수 있다
+String result= data+ "";
+어떤 자료형이던지 + 문자열로 하면 문자열이 된다
+
+StringBuffer의 주요메소드
+
+append()
+문자열데이터 맨 뒤에 새로운 문자열이나 데이터를 추가하는 메소드
+String처럼 새로운 메모리가 잡히는 것이 아니라
+객체 자신이 변경됩니다
+
+toString()
+StringBuffer의 데이터를 String문자열로 만들어주는 메소드
+
+deleteCharAt(int index)
+==> 매개변수로 전달받은 index위치의 문자를 삭제하는 메소드이다
+
+delete(int start, int end)
+==> start위치에서부터 end-1까지의 문자열을 삭제하는 메소드이다
+
+
+java.util.Date
+자바 초기에 있던 클래스, 년도에 1900을 더해 사용
+
+java.util.Calender
+추상클래스이며 직접 객체를 생성할 수 없음. getInstance메소드를 통해서 객체를 생성
+연도에 1900을 더하지 않아도 된다
+
+java.util.GregorianCalender
+Calender클래스의 자식클래스이며, 객체를 직접 생성
+
+현재 날짜와 시간에 대한 정보를 알아오기 위해서
+1. new Date();
+2. Calender.getInstance();
+3. new GregorianCalender();
+4. System.currendtTimeMillis(); //현재날짜와 시간의 정보인 밀리세컨즈를 long으로 반환
+                                  밀리세컨즈는 1초를 1000으로 처리
+
+Date의 사용
+
+getYear()			연도를 반환하는 메소드. 사용하려면 +1900
+getMonth()			월을 반환하는 메소드. 1월은 0을 반환, 12월은 11을 반환
+getDate()			날
+getHours()			시
+getMinutes()		분
+getSeconds()        초
+
+Calendar 클래스
+
+Calendar클래슨느 사용자가 직접 객체를 생성할 수 없고
+static Calendar getInstance() 메소드를 이용한다                        
