@@ -11,7 +11,6 @@ public class FestivalTest {
 		double score;
 		Scanner sc= new Scanner(System.in);
 		for(i=0; i<10; i++) {
-		
 		System.out.println("심사위원들의 점수를 입력하세요 (0.0~10.0)");
 		score= sc.nextDouble();
 		list.add(score);
