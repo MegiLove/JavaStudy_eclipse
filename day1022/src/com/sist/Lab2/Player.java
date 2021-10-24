@@ -2,6 +2,7 @@ package com.sist.Lab2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Player {
 	ArrayList<Card> list = new ArrayList<Card>();
@@ -30,5 +31,25 @@ public class Player {
 			}
 		}
 		return n;
+	}
+	
+	public boolean isTwoPair() {
+		String[] number = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		int value = 2;
+		for (int i = 0; i < number.length; i++) {
+			map.put(number[i], value++);
+		}
+		HashSet<String> set = new HashSet<String>();
+		int n=0;
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i + 1; j < list.size(); j++) {
+				if (list.get(i).getNumber().equals(list.get(j).getNumber())) {
+					n= map.get(list.get(i).getNumber());
+					set.add(list.get(i).getNumber());
+				}
+			}
+		}
+		return set.size()>1;
 	}
 }

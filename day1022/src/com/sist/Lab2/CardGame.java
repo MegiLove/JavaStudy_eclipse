@@ -27,6 +27,17 @@ public class CardGame {
 			System.out.println("player2은 원페어가 아닙니다");
 		}
 		
+		if(p1.isTwoPair()) {
+			System.out.println("player1의 투페어입니다. 점수는"+p2.isTwoPair()+"입니다");
+		}else {
+			System.out.println("player1의 투페어가 아닙니다");
+		}
+		if(p2.isTwoPair()) {
+			System.out.println("player2의 투페어입니다. 점수는"+p2.isTwoPair()+"입니다");
+		}else {
+			System.out.println("player2의 투페어가 아닙니다");
+		}
+		
 	}
 
 }
