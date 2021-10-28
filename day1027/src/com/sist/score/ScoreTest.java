@@ -15,6 +15,7 @@ public class ScoreTest {
 				str += (char) ch;
 			}
 			System.out.println(str);
+			fr.close();
 			StringTokenizer st = new StringTokenizer(str, ",");
 			String name = st.nextToken();
 			double kor = Double.parseDouble(st.nextToken());
