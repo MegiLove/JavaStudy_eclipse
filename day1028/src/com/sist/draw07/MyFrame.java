@@ -1,5 +1,6 @@
 package com.sist.draw07;
 
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -16,18 +17,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-
+import java.awt.Color;
 //MyFrame클래스 자신이 JMenuItem을 눌렀을 떄
 public class MyFrame extends JFrame implements ActionListener {
 	private LinePanel lp;
 	//저장할 파일명과 열어올 파일명을 선택할 수 있도록 하는 JFileChooser를 맴버변수로 선언한다
 	JFileChooser jfc;
+	JColorChooser jcc;
+	
 	public MyFrame() {
 		lp = new LinePanel();
 		add(lp);
 		
 		
 		jfc= new JFileChooser("c:/myData");
+		jcc= new JColorChooser();
 		
 		// 메뉴바를 생성한다
 		JMenuBar jmb = new JMenuBar();
@@ -36,6 +40,8 @@ public class MyFrame extends JFrame implements ActionListener {
 		JMenu mn_file = new JMenu("파일");
 
 		JMenu mn_file2 = new JMenu("그리기도구");
+		
+		JMenu mn_file3 = new JMenu("그리기색상");
 
 		// 부메뉴들을 생성한다
 		JMenuItem file_new = new JMenuItem("새 파일");
@@ -49,6 +55,11 @@ public class MyFrame extends JFrame implements ActionListener {
 		JMenuItem file_draw2 = new JMenuItem("사각형");
 
 		JMenuItem file_draw3 = new JMenuItem("원");
+		
+		JMenuItem color_red = new JMenuItem("빨강");
+		JMenuItem color_blue = new JMenuItem("파랑");
+		JMenuItem color_green = new JMenuItem("초록");
+		JMenuItem color_other = new JMenuItem("다른 색상");
 
 		// 부메뉴들을 주 메뉴에 담는다
 		mn_file.add(file_new);
@@ -58,10 +69,16 @@ public class MyFrame extends JFrame implements ActionListener {
 		mn_file2.add(file_draw1);
 		mn_file2.add(file_draw2);
 		mn_file2.add(file_draw3);
+		
+		mn_file3.add( color_red);
+		mn_file3.add( color_blue);
+		mn_file3.add( color_green);
+		mn_file3.add( color_other);
 
 		// 주메뉴를 메뉴바에 담는다
 		jmb.add(mn_file);
 		jmb.add(mn_file2);
+		jmb.add(mn_file3);		
 
 		// 메뉴바를 프레임에 설정한다
 		this.setJMenuBar(jmb);
@@ -73,6 +90,10 @@ public class MyFrame extends JFrame implements ActionListener {
 		file_draw1.addActionListener(this);
 		file_draw2.addActionListener(this);
 		file_draw3.addActionListener(this);
+		color_red.addActionListener(this);
+		color_blue.addActionListener(this);
+		color_green.addActionListener(this);
+		color_other.addActionListener(this);			
 		
 		setSize(600, 400);
 		setVisible(true);
@@ -116,20 +137,28 @@ public class MyFrame extends JFrame implements ActionListener {
 			// 화면을 다시 그리게 하기 위하여 LinePanel 객체를 lp의 repaint를 호출한다
 			try {
 				System.out.println("열어옵니다");
-				int re=jfc.showOpenDialog(this);
+				int rx=jfc.showOpenDialog(this);
+				if(rx==0) {
 				File file= jfc.getSelectedFile();
 				// 객체단위로 파일의 내용을 읽어들이기 위하여 ObjectInputStream객체를 생성한다
 				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 				lp.list= (ArrayList<GraphicInfo>)ois.readObject();
 				lp.repaint();
 				ois.close();
-				
+				}
 				
 
 			} catch (Exception e2) {
 				System.out.println("예외발생: " + e2.getMessage());
 			}
-		} else if (cmd.equals("새파일")) {
+		} else if (cmd.equals("새 파일")) {
+			System.out.println("새파일");
+			//this.remove(lp);
+			//this.add(lp = new LinePanel());
+			//사용자가 그린 그래픽이 담겨있는 리스트를 모두 지워요
+			lp.list.clear();
+			//그래픽을 그리는 판넬을 다시 그린다
+			lp.repaint();
 			
 		} else if (cmd.equals("선")) {
 			lp.drawType=0;
@@ -137,6 +166,18 @@ public class MyFrame extends JFrame implements ActionListener {
 			lp.drawType=1;
 		} else if (cmd.equals("원")) {
 			lp.drawType=2;
+		}  else if (cmd.equals("빨강")) {
+			lp.drawColor=Color.RED;
+		} else if (cmd.equals("파랑")) {
+			lp.drawColor=Color.BLUE;
+		} else if (cmd.equals("초록")) {
+			lp.drawColor=Color.GREEN;
+		}else if (cmd.equals("다른 색상")) {
+			Color color=jcc.showDialog(this, "그리기 색상", Color.RED);
+			System.out.println("선택한 색상:"+color);
+			if(color!=null) {
+				lp.drawColor= color;
+			}
 		}
 	}
 

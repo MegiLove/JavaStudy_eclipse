@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.awt.Color;
 public class LinePanel extends JPanel implements MouseListener {
 	int x1= 0;
 	int y1= 0;
@@ -15,6 +16,8 @@ public class LinePanel extends JPanel implements MouseListener {
 	//원: 1
 	//사각형: 2
 	int drawType;
+	
+	Color drawColor;
 	
 	ArrayList<GraphicInfo> list;
 	
@@ -40,6 +43,8 @@ public class LinePanel extends JPanel implements MouseListener {
 			
 			int width= x2-x1;
 			int height=y2-y1;
+			
+			g.setColor(info.getDrawColor());
 			
 			switch(info.getDrawType()) {
 			case 0: g.drawLine(x1,y1,x2,y2);break;
@@ -69,7 +74,7 @@ public class LinePanel extends JPanel implements MouseListener {
 		y2= e.getY();
 		//하나의 선이 완성될 때의 리스트 선의 시작점x,y 끝점 x,y를 갖고 있는 GraphicInfo객체를 
 		//생성하여 리스트에 담는다 
-		list.add(new GraphicInfo(x1,y1,x2,y2,drawType));
+		list.add(new GraphicInfo(x1,y1,x2,y2,drawType,drawColor));
 		repaint();
 		
 	}

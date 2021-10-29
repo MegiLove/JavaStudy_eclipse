@@ -1,7 +1,7 @@
 package com.sist.draw07;
 
 import java.io.Serializable;
-
+import java.awt.Color;
 //선 하나를 포장하기 위한 클래스를 만든다
 //파일로 내보내고 읽어오기 위하여 직렬화한다
 public class GraphicInfo implements Serializable {
@@ -10,15 +10,18 @@ public class GraphicInfo implements Serializable {
 	private int x2;
 	private int y2;
 	private int drawType;
+	private Color drawColor;
 	
-	public GraphicInfo(int x1, int y1, int x2, int y2, int drawType) {
+	public GraphicInfo(int x1, int y1, int x2, int y2, int drawType, Color drawColor) {
 		super();
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x2;
 		this.y2 = y2;
 		this.drawType = drawType;
+		this.drawColor = drawColor;
 	}
+	
 	public int getX1() {
 		return x1;
 	}
@@ -51,6 +54,16 @@ public class GraphicInfo implements Serializable {
 	public void setDrawType(int drawType) {
 		this.drawType = drawType;
 	}
+	
+	
+	public Color getDrawColor() {
+		return drawColor;
+	}
+
+	public void setDrawColor(Color drawColor) {
+		this.drawColor = drawColor;
+	}
+
 	public GraphicInfo() {
 		super();
 		// TODO Auto-generated constructor stub
