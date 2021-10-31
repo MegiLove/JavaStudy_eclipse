@@ -74,7 +74,7 @@ public class Notepad extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		if (cmd.equals("货 颇老")) {
-			try {			
+			try {	
 				ta.setText("");
 				 this.setTitle("力格 绝澜");
 			} catch (Exception e2) {
