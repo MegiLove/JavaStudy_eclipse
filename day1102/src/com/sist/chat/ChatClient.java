@@ -1,4 +1,4 @@
-package com.sist.echo02;
+package com.sist.chat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +12,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class UDPChatClient extends JFrame implements ActionListener,Runnable{
+public class ChatClient extends JFrame implements ActionListener{
 	//대화내용을 출력할 텍스트에리어를 맴버변수로 만든다
 	JTextArea jta;
 	
@@ -23,9 +23,9 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 	OutputStream os;
 	
 	
-	public UDPChatClient() {
+	public ChatClient() {
 		jta= new JTextArea();
-		jtf= new JTextField(50);
+		jtf= new JTextField();
 		
 		JButton btn= new JButton("전송");
 		
@@ -33,8 +33,9 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 		btn.addActionListener(this);
 		
 		JPanel p= new JPanel();
-		p.add(jtf);
-		p.add(btn);
+		p.setLayout(new BorderLayout());
+		p.add(jtf,BorderLayout.CENTER);
+		p.add(btn,BorderLayout.EAST);
 		
 		JScrollPane jsp= new JScrollPane(jta);
 		
@@ -47,8 +48,8 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 		setVisible(true);
 		
 		try {
-			//통신을 위해 서버에 접속을 요청한다
-			Socket socket= new Socket("192.168.0.11", 9003);
+			//2. 통신을 위해 서버에 접속을 요청한다
+			Socket socket= new Socket("222.120.183.156", 9003);
 			
 			//입출력을 위한 스트림을 생성한다
 			is= socket.getInputStream();
@@ -86,14 +87,14 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 		ClientThread ct= new ClientThread();
 		ct.start();
 		
-		Thread t= new Thread(this);
-		t.start();
+		/*Thread t= new Thread(this);
+		t.start();*/
 	}// end 생성자
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new UDPChatClient();
+		new ChatClient();
 		//start는 생성자나 main에서 둘 다 가능하다
 	}
 	@Override
@@ -110,6 +111,7 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 		}
 	}
 	
+	/* Runnable을 이용하는 방법
 	//서버로부터 수신된 데이터를 계속 받도록 한다
 	@Override
 	public void run() {
@@ -128,4 +130,5 @@ public class UDPChatClient extends JFrame implements ActionListener,Runnable{
 		}//end while
 		
 	}//end run
+	*/
 }

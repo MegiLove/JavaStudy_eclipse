@@ -1,4 +1,4 @@
-package com.sist.echo02;
+package com.sist.echo;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 
-public class UDPChatServer {
+public class TCPChatServer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
