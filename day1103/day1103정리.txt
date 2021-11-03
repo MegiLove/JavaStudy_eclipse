@@ -1,0 +1,170 @@
+**inner 클래스
+==> 클래스 안에 포함되는 또다른 클래스를 말한다
+==> 그 클래스가 다른 곳에서는 필요하지 않고
+	특정 클래스 안에서만 필요한 경우 편리하게 만들어 사용할 수 있다
+	
+==> inner클래스를 포함하고 있는 클래스를 outter클래스라고 한다
+==> inner 클래스는 마치 자신이 outter클래스의 맴버인 것처럼 동작한다
+	즉, outter클래스에 맴버에 자유롭게 접근할 수 있다
+	
+==> 그러나 outter클래스는 inner클래스에 직접 접근할 수 없고
+	접근하려면 객체를 생성하고 객체를 통해서 접근한다
+	
+==> 이러한 inner클래스는 언제 사용되나요?
+	쓰레드 프로그래밍을 할 때에 그 기능이 다른 곳에서는 필요치 않고
+	특정 클래스 안에서만 동작해야될 쓰레드인 경우에 inner 클래스로 만든다 
+	
+	예를 들어, 채팅프로그램의 클라이언트를 위한 ChatClient 클래스에서
+	사용자가 입력한 대화내용을 서버로 보내는 것은 버튼을 눌렀을 때에
+	보내도록 한다
+	이 일처리와 상관없이 서버가 보내오는 메세지를 계속 수신하는 쓰레드가 필요하다
+	이 쓰레드는 ChatClient클래스에서만 필요하다
+	그래서 이 부분을 inner 클래스로 만들어 표현한다
+	
+		//보통 inner클래스를 만들 때 클래스이름을 정식으로 정해줄 수 있지만
+		//대부분의 경우 클래스 이름 안정해주고 이름없는 클래스를 정의하면서 바로 객체를 생성한다
+		//new 인터페이스이름(){메소드이름(){}}
+		//인터페이스를 구현한 클래스를 정의하고 바로 객체를 생성 가능하다
+		
+		
+		
+데이터베이스 연결 프로그래밍
+**데이터베이스는 왜 필요한가요?
+==> 프로그램을 실행한 결과를 화면에 출력하면
+	컴퓨터전원을 끄고 나면 그 결과가 날아가 버린다
+	그래서 그 결과를 영구적으로 보관하려면 파일을 이용한다
+	
+	그런데, 파일은 이해관계가 있는 여러 사람들이
+	항상 최신의 정보를 공유하기에는 어려움이 있다
+	
+	그래서 이해관계에 있는 사라들이 항상 최신의 정보를 공유하도록
+	자료를 한곳에 모아두면 좋을 거 같다
+	이를 데이터베이스라고 한다
+	
+	데이터베이스를 잘 사용하도록 도와주는 시스템을
+	데이터베이스 관리시스템이라고 한다
+	DataBase Management System
+	DBMS
+	
+	DBMS의 종류는 oracle, ms-sql, my-sql, mariadb 등이 있다
+	우리나라에서는 대체로 oracle을 사용하고 있다
+	
+	교육용으로 oracle XE를 다운받아 설치하도록 하자
+	
+	관리자계정(system,sys)의 암호 
+	manager
+	
+	sql은 데이터베이스 명령어이다
+	structured query language
+	
+**데이터베이스 명령을 내리기 위하여 다음을 실행한다
+	c:\>sqlplus
+	sql>
+	
+	레코드(행,row)
+	속성(열,field)
+	
+	행과 열로 구성된 자료의 집합을 테이블이라고 한다
+	
+	데이터베이스는 서로 관련이 있는 테이블들 여러 개가 모여서 구성된 것이다
+	
+	
+**테이블 생성 명령어
+	create table 테이블이름(속성이름 자료형, 속성이름 자료형, ....);
+	
+	oracle에서는 
+	문자열의 자료형을 varchar2(길이)라고 한다
+	varchar2(100)
+	
+	숫자 자료형==> number
+	
+	sql> create table student(name varchar2(20),kor number,eng number,math number);
+	
+	sql> create 
+	table 
+	student(name varchar2(20),
+	kor number,
+	eng number,
+	math number);
+	
+	한 줄에 명령어를 쭉 써도 좋고 여러줄에 걸쳐서 명령어를 써도 좋다
+	
+	
+**테이블구조를 파악하는 명령어
+	sql>desc student
+	
+	(desc는 description)
+	
+	
+**테이블에 자료를 추가하는 데이터베이스 명령어
+	insert into 테이블이름 values(값1, 값2,....);
+	이 때 값의 수와 순서는 테이블의 구조와 같아야 한다 
+	오라클에서 문자열은 반드시 홋따옴표로 묶어야 한다
+	
+	추가한 내용이 있고 그것을 dbms에 반영하려면
+	반드시 commit을 해야한다
+	
+	만약, 이렇게 추가한 내용을 취소하려면
+	rollback을 한다
+	
+	
+**테이블에 자료를 조회하기	
+	select * from 테이블이름;
+	
+
+자바 프로그램에서 사용자가 입력한 이름,국어,영어,수학을 갖고 테이블에 추가하는
+데이터베이스 명령어를 실행하도록 프로그램을 작성해보자	
+
+==> 자바에서 데이터베이스에 연결
+==> java DataBase Connect
+==> JDBC 연결 프로그래밍
+
+**자바에서 데이터베이스 연결 프로그래밍 순서(JDBC 프로그래밍 순서)
+1. jdbc드라이버를 메모리로 로드한다
+Class.forName(oracle.jdbc.driver.OracleDriver);
+
+2. DB 서버에 연결한다
+	Connection conn=DriverManager.getConnection("서버의 주소","사용자이름","암호");	
+	
+3. 자바 프로그램에서 데이터베이스 명령을 실행할 Statement 객체를 생성한다
+	Statement stmt=conn.createStatement(); 
+	
+4. 데이터베이스 명령을 실행한다
+	int re=stmt.executeUpdate(명령어); 
+		==> 데이터베이스에 변경이 있는 명령을 시킬 때 사용
+		==> 성공적으로 명령을 수행한 레코드의 수를 반환(int re)
+		
+		
+	ResultSet rs=stmt.executeQuery(명령어);
+		==> 데이터베이스의 내용을 읽어오는 명령을 시킬 때 사용
+		==> 읽어온 결과를 ResultSet으로 반환
+
+5. 일처리를 한다
+
+6. 사용했던 자원을 닫아준다
+	rs.close();
+	stmt.close();
+	conn.close();
+	
+	
+	
+	
+	
+	실행했더니 다음과 같은 오류가 발생했다
+	예외발생: oracle.jdbc.driver.OracleDriver
+	==>이는 드라이버가 어디있는지 몰라서 난 오류이다
+		그래서 알려줘야한다
+		(이클립스에 포함시켜야 한다)
+		
+	오라클이 설치된 다음의 경로에
+	C:\app\User\product\21c\dbhomeXE\jdbc\lib
+	ojdbc8.jar파일 안에 그 클래스가 있다
+	
+	프로젝트 이름에 오른쪽 단추
+	==>properties
+	==> JavaBuildPath
+	==> Libraries
+	==> class path
+	==> add external jars
+	==>C:\app\User\product\21c\dbhomeXE\jdbc\lib\ojdbc8.jar
+	==> apply and close
