@@ -1,0 +1,15 @@
+**자료의 수정
+update 테이블이름 set 컬럼이름=값, 컬럼이름=값... where 컬럼이름=값;
+
+update goods set qty=20,price=2000,item='공책' where no=7;
+
+**자료의 삭제
+delete 테이블명 where 컬럼이름=값;
+
+delete goods where no=7;
+
+데이터베이스에 연결하여
+C create
+R read
+U update
+D delete
