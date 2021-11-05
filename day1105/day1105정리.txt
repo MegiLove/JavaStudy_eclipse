@@ -1,0 +1,32 @@
+**PreparedStatement
+==> 데이터베이스 명령어가
+때로는 사용자가 입력한 값으로 명령어를 만들어야 하는 경우가 있다
+
+"insert into goods values("+no+",'"+item+"',"+qty+","+price+")";
+위의 명령어는 사용자가 입력한 상품명, 수량, 가격, 상품번호를 변수에 담아 일일이 +로 연결하여
+데이터베이스 명령어를 문자열로 만들어야 한다
+이 때 문자열 데이터를 홋따옴표로 연결해야 하고 각 컬럼의 구분은 ,로 해야하고
+이것을 일일이 +연산으로 연결하는 것은 번거롭다
+
+이와 같이 사용자가 입력한 변수의 내용으로 데이터베이스 명령어를 만들어야 하는 경우
+변수가 들어갈 자리에 ?로 대신하여 데이터베이스 명령어를 만들 수 있다
+
+이렇게 하면 데이터베이스 명령어를 좀 더 간결하게 표현할 수 있고 이해하기도 쉽다
+String sql = "update goods set item=?,qty=?,price=? where no=?";
+
+이런 경우 Statement의 후손인 PreparedStatement를 사용한다
+
+PreparedStatement는 생성시에 ?가 있는 데이터베이스 명령어를 매개변수로 전달해야 하고
+실행하기 전에 각각의 ?에 해당하는 값을 반드시 설정해야 한다
+
+또, 데이터베이스 명령어를 실행할 때에는 sql을 전달하지 않아야 한다
+
+
+**오라클 포트번호와 서비스명 확인하기
+C:\app\User\product\21c\homes\OraDB21Home1\network\admin\tnsnames.ora
+
+DAO ==> Database Access Object
+	==> 데이터베이스 접근하여 자료를 추가,읽기,수정,삭제를 
+			담당하는 객체를 말합니다.
+			
+create table member(no number primary key, name varchar2(20), addr varchar2(20), age number, phone varchar2(30));
